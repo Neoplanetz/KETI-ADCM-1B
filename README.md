@@ -19,20 +19,20 @@ $ cd ~/catkin_ws
 $ catkin_make
 ```
 
-2. RP Lidar를사용하기위해usb 장치에권한부여하기및재부팅하기
+2. RP Lidar를 사용하기위해 usb 장치에 권한 부여하기 및 재부팅하기
 ```
 $ cd ~/catkin_ws/src/rplidar_ros/
 $ sudo ./scripts/create_udev_rules.sh
 $ reboot
 ```
 
-3. RP Lidar ROS 실행하기
-	- RP Lidar ROS 토픽만 실행하기
+3-1. RP Lidar ROS 실행하기 (RP Lidar ROS 토픽만 실행할 경우)
 ```
 $ roscore
 $ roslaunch rplidar_ros rplidar.launch
 ```
-	- RP Lidar ROS 토픽과 Rviz를 이용한 View 실행하기
+
+3-2. RP Lidar ROS 실행하기 (RP Lidar ROS 토픽과 Rviz를 이용한 View 실행할 경우)
 ```
 $ roscore
 $ roslaunch rplidar_ros view_rplidar.launch
@@ -118,7 +118,7 @@ $ rqt_image_view image:=/image_raw
 ```
 ![rqt_image_view](README_img/mono_camera.png)
 
-7. 카메라캘리브레이션진행요망확인
+7. 카메라 캘리브레이션 진행요망 확인
 
 
 # Acknowledgment
