@@ -121,6 +121,11 @@ $ rqt_image_view image:=/image_raw
 7. 카메라 캘리브레이션 진행요망 확인
 
 
+# Microinfinity IMU 설치 및 사용
+- Microinfity에서 기술지원 진행 중임
+- 제조사 제공 ROS package가 없기 때문에, 개발 진행 중임
+
+
 # Acknowledgment
 - 본 Git은 연구 결과물은 철저하게 배제되어 있음
 - 센서 인터페이스를 참여기관 간 공유하기 위해 관련 자료만 commit함
