@@ -1,9 +1,9 @@
 # KETI-ADCM-1B
 - 적용 센서
-	- 스테레오 카메라:
-	- 모노 카메라
-	- IMU
-	- LDS: 
+	- 스테레오 카메라: [위드로봇(주) oCamS-1CGN-U](http://www.devicemart.co.kr/1342047)
+	- 모노 카메라: [위드로봇(주) oCam-5CRO-U](http://www.devicemart.co.kr/1312029)
+	- IMU: [Microinfinity社 CruizCore XG1350](http://www.minfinity.com/page.php?Main=1&sub=1&tab=4)
+	- LDS: [SLAMTEC社 RPLIDAR A2 [DFR0445]](http://www.devicemart.co.kr/1312730)
 - 개발환경
 	- Ubuntu 16.04
 	- ROS Kinetic
@@ -27,12 +27,12 @@ $ reboot
 ```
 
 3. RP Lidar ROS 실행하기
-- RP Lidar ROS 토픽만 실행하기
+	- RP Lidar ROS 토픽만 실행하기
 ```
 $ roscore
 $ roslaunch rplidar_ros rplidar.launch
 ```
-- RP Lidar ROS 토픽과 Rviz를 이용한 View 실행하기
+	- RP Lidar ROS 토픽과 Rviz를 이용한 View 실행하기
 ```
 $ roscore
 $ roslaunch rplidar_ros view_rplidar.launch
