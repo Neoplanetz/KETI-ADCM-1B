@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>cruizcore_xg1350_driver</name>
+  <version>0.0.1</version>
+  <description>
+    cruizcore_xg1350_driver is a driver package for Microinfinity. The driver should also work with USB port.
+  </description>
+  <license>BSD</license>
+  <author email="neoplanetz@gmail.com">Yo Han Jung</author>
+  <maintainer email="neoplanetz@gmail.com">Yo Han Jung</maintainer>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>tf</run_depend>
+</package>
