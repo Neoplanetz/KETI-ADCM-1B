@@ -1,7 +1,7 @@
 <launch>
-  <node pkg="cruizcore_xg1350" type="cruizcore_xg1350" name="cruizcore_xg1350">
+  <node pkg="cruizcore_xg1350_driver" type="cruizcore_xg1350_driver" name="cruizcore_xg1350_driver">
     <param name="port" value="/dev/ttyUSB0" />
     <param name="baud_rate" value="115200" />
   </node>
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find cruizcore_xg1350)/rviz_cfg/imu_test.rviz" />
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find cruizcore_xg1350_driver)/rviz_cfg/imu_test.rviz" />
 </launch>
