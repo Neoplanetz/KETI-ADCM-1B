@@ -125,6 +125,8 @@ $ rqt_image_view image:=/image_raw
 - Microinfity에서 기술지원 진행 중임
 - 제조사 제공 ROS package가 없기 때문에, 개발 진행 중임
 
+![rviz_cruizcore_xg1350](README_img/cruizcore_xg1350_ros_pakage.png)
+
 
 # Acknowledgment
 - 본 Git은 연구 결과물은 철저하게 배제되어 있음
