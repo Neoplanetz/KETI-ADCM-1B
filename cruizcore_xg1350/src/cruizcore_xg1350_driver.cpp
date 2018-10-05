@@ -5,6 +5,13 @@
 #include <tf/transform_broadcaster.h>
 #include <tf/transform_datatypes.h>
 
+#include <unistd.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <fcntl.h>
+#include <termios.h>
+#include <sys/time.h>
+
 using namespace std;
 
 class CruizcoreDriverForROS
@@ -18,7 +25,7 @@ private:
 
 	tf::TransformBroadcaster broadcaster_;
 
-	Platform::Mutex lock_;
+	pthread_mutex_t lock_;
 
 	std::string parent_frame_id_;
 	std::string frame_id_;
@@ -26,8 +33,8 @@ private:
 	double angular_velocity_stddev_;		// need check.
 
 	//Define constants
-	const char COMM_PORT[] = "/dev/ttyUSB0";
-	const int PACKET_SIZE = 15;
+	const char* COMM_PORT = "/dev/ttyUSB0";
+	const static int PACKET_SIZE = 15;
 	const int SAMPLES = 1000;
 
 	//Define global variables
@@ -64,7 +71,9 @@ public:
 		{			
 			return false;
 		}
-				
+
+		lock_ = PTHREAD_MUTEX_INITIALIZER;
+
 		return true;
 	}
 
@@ -78,7 +87,7 @@ public:
 	{
 		unsigned char received_data;
 		
-		lock_.lock();
+		pthread_mutex_lock(&lock_);
 
 		if (read(file_descriptor, &received_data, sizeof(char)) == -1)
 		{
@@ -88,7 +97,7 @@ public:
 
 		decodingPacket(received_data);
 
-		lock_.unlock();
+		pthread_mutex_unlock(&lock_);
 
 		return true;
 	}
@@ -209,12 +218,10 @@ public:
 		ros::Time now = ros::Time::now();
 
 		imu_data_raw_msg.header.stamp =
-		imu_data_msg.header.stamp =
-		imu_magnetic_msg.header.stamp = now;
-
+		imu_data_msg.header.stamp = now;
+		
 		imu_data_raw_msg.header.frame_id =
-		imu_data_msg.header.frame_id =
-		imu_magnetic_msg.header.frame_id = frame_id_;
+		imu_data_msg.header.frame_id = frame_id_;
 
 		// orientation
 		imu_data_msg.orientation.x = orientation[0];
@@ -230,7 +237,7 @@ public:
 		imu_data_raw_msg.linear_acceleration.z =
 		imu_data_msg.linear_acceleration.z = accel_z_float;
 
-		// 각속도 수정해서 넣기 imu.gx gy gz.
+		// imu.gx gy gz.
 		// original data used the degree/s unit, convert to radian/s
 		imu_data_raw_msg.angular_velocity.x =
 		imu_data_msg.angular_velocity.x = 0.0;
@@ -248,9 +255,9 @@ public:
 			tf::Vector3(0.0, 0.0, 0.0)),
 			ros::Time::now(), parent_frame_id_, frame_id_));
 
-		// 여기다가 publish 하는 부분 넣어야함.
-		cout << "rate:" << rate_float << " [deg/sec]\t angle:" << angle_float << " [deg]\n";
-		cout << "accel_x:" << accel_x_float << " [m/sec^2]\t accel_y:" << accel_y_float << " [m/sec^2]\t accel_z:" << accel_z_float << " [m/sec^2]\n";
+		// publish
+		//cout << "rate:" << rate_float << " [deg/sec]\t angle:" << angle_float << " [deg]\n";
+		//cout << "accel_x:" << accel_x_float << " [m/sec^2]\t accel_y:" << accel_y_float << " [m/sec^2]\t accel_z:" << accel_z_float << " [m/sec^2]\n";
 	}
 
 };
