@@ -45,25 +45,25 @@ $ roslaunch rplidar_ros view_rplidar.launch
 
 ![ocam_stereo](README_img/stereo_camera_1.png)
 
-1. Install some required library packages
+1. 위드로봇 스테레오 카메라 사용을 위한 패키지들 설치
 ```
 $ sudo apt-get install libv4l-dev libudev-dev ros-kinetic-rtabmap*
 ```
 
-2. Download oCam Stereo Camera Package from Github
+2. 깃허브에서 oCam Stereo Camera 패키지를 다운로드
 ```
 $ cd ~/catkin_ws/src/
 $ svn export https://github.com/withrobot/oCamS/trunk/Software/oCamS_ROS_Package/ocams
 ```
 
-3. Build 'ocams' source using Catkin
+3. Catkin을 이용하여 다운받은 ocams 를 빌드하기
 ```
 $ cd ~/catkin_ws/
 $ catkin_make
 $ source devel/setup.bash
 ```
 
-4. Set Virtual COM Port for grabing IMU data
+4. IMU 데이터 획득을 위해 가상 Comport 설정
 ```
 $ sudo gedit /etc/udev/rules.d/99-ttyacms.rules
 
@@ -75,7 +75,7 @@ ENV{ID_MM_DEVICE_IGNORE}="1"
 $ sudo udevadm control --reload-rules
 ```
 
-5. Launch 'ocams_ros'
+5. ocams_ros 런치파일 실행
 ```
 $ roslaunch ocams ocams_ros.launch
 ```
@@ -122,8 +122,8 @@ $ rqt_image_view image:=/image_raw
 
 
 # Microinfinity IMU 설치 및 사용
-- Microinfity에서 기술지원 진행 중임
-- 제조사 제공 ROS package가 없기 때문에, 개발 진행 중임
+- 제조사 제공 ROS package가 없기 때문에, 직접 ROS용 패키지 개발완료
+
 
 ![rviz_cruizcore_xg1350](README_img/cruizcore_xg1350_ros_pakage.png)
 
